@@ -1,0 +1,23 @@
+
+
+/** Rodriguez, Wally
+ * Title: Week 3 - Iterator (Animal Collection)
+ * The program should allow a user to do the following:
+ * - Allow the reading of a collection of animal objects from an external file.
+ * - Output on screen the content of a collection of animal objects.
+ * - Use Iterator to achieve these goals.
+ */
+
+public class Animal
+    {
+        private String name;
+        public Animal(String name)
+            {
+                this.name = name;
+            }   
+        public String getName() 
+            {
+                return name;
+            }
+
+}
