@@ -1,0 +1,78 @@
+
+/** Rodriguez, Walberto 
+ * Title: Week 3 - Iterator (Animal Collection)
+ * The program should allow a user to do the following:
+ * - Allow the reading of a collection of animal objects from an external file.
+ * - Output on screen the content of a collection of animal objects.
+ * - Use Iterator to achieve these goals.
+ */
+
+// imports used in the program
+import java.util.Iterator;
+import java.util.List;
+import java.io.*;
+import java.util.ArrayList;
+
+//main class 
+public class mainIterator 
+{
+    private final Interface ui = Interface.getInstance();
+
+    // main loop. Will display the animails
+    private void mainLoop() 
+        {
+            ui.display("****************************************");
+            ui.display("***       Wally Rodriguez            ***");
+            ui.display("***       Animal Collection          ***");
+            ui.display("****************************************");
+
+            //  array & name of file
+            List<Animal> animalList = new ArrayList<>();
+            File animalFile = new File("animals.txt");
+
+            parseAnimalFile(animalFile, animalList);
+            displayAnimals(animalList);
+        }
+
+    
+    private void parseAnimalFile(File animalFile, List<Animal> animalList) 
+        {
+            try(BufferedReader br = new BufferedReader(new FileReader(animalFile))) 
+                {
+                    String line = br.readLine();
+                    while (line != null) 
+                        {
+                            Animal animal = new Animal(line);
+                            animalList.add(animal);
+                            line = br.readLine();
+                        }
+                } 
+            // catches file if its not read
+            catch (FileNotFoundException fefe) 
+                {
+                    ui.displayError("File is missing " + animalFile.getAbsolutePath());
+                } 
+            catch (IOException e) 
+                {
+                    ui.displayError("Unable to process file " + animalFile.getName() 
+                                    + " : " + e.getMessage());
+                }
+        }
+
+      private void displayAnimals(List<Animal> animalList) 
+        {
+            Iterator itr = animalList.iterator();
+            while(itr.hasNext())
+                {
+                    Animal animal = (Animal) itr.next();
+                    ui.display( animal.getName() );
+                }
+        }
+    // returns to main class loop
+    public static void main(String[] args) 
+        {
+            mainIterator m = new mainIterator();
+            m.mainLoop();
+        }
+
+}
