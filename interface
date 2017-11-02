@@ -1,0 +1,40 @@
+
+/** Rodriguez, Wally    
+ * The program should allow a user to do the following:
+ * - Allow the reading of a collection of animal objects from an external file.
+ * - Output on screen the content of a collection of animal objects.
+ * - Use Iterator to achieve these goals.
+ */
+
+public class Interface 
+    {
+        private static final Interface SINGLETON = new Interface();
+
+        public static Interface getInstance() 
+            {
+                return SINGLETON;
+            }   
+
+    // singleton pattern
+    private Interface() 
+        {
+        }
+
+    public void display(String text) 
+        {
+            System.out.println(text);
+        }
+
+    public void displayError(String text) 
+        {   
+            spacer();
+            display(" Error: " + text);
+            spacer();
+        }
+    
+    public void spacer() 
+        {
+            System.out.print(System.lineSeparator());
+        }
+
+}
